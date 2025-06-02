@@ -3,5 +3,5 @@
 internal interface IServiceResult {
     public bool IsSuccess { get; }
     
-    public string[] Errors { get; }
+    public ErrorMessage[] Errors { get; }
 }

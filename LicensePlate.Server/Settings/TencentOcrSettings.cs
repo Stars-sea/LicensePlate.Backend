@@ -1,6 +1,9 @@
 ﻿namespace LicensePlate.Server.Settings;
 
-internal record TencentOcrSettings(
-    string AppId,
-    string AppKey
-);
+internal sealed class TencentOcrSettings {
+    public const string Section = "TencentOcrSettings";
+    
+    public string AppId { get; set; } = string.Empty;
+    
+    public string AppKey { get; set; } = string.Empty;
+}

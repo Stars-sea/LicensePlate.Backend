@@ -23,7 +23,7 @@ internal class LicensePlateOcr(IOptions<TencentOcrSettings> settings) : ILicense
             return LicensePlateOcrResult.Succeed(response.LicensePlateInfos);
         }
         catch (Exception e) {
-            return LicensePlateOcrResult.Fail(e.Message);
+            return LicensePlateOcrResult.Fail((e.GetType().Name, e.Message));
         }
     }
 }

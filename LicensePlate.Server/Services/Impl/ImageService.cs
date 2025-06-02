@@ -8,7 +8,7 @@ internal class ImageService : IImageService {
     public ImageServiceResult<string> BinaryImg2Base64(byte[] image)
         => IsImageValid(image)
             ? ImageServiceResult<string>.Succeed(Convert.ToBase64String(image))
-            : ImageServiceResult<string>.Fail("Invalid image size (should < 7 MB)");
+            : ImageServiceResult<string>.Fail(("InvalidImgSize", "Invalid image size (should < 7 MB)"));
 
     public ImageServiceResult<byte[]> Base64ToBinaryImg(string base64) 
         => ImageServiceResult<byte[]>.Succeed(Convert.FromBase64String(base64));

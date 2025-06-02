@@ -2,8 +2,8 @@
 
 namespace LicensePlate.Server.Services.Results;
 
-internal sealed record LicensePlateOcrResult(bool IsSuccess, string[] Errors, LicensePlateInfo[] Infos) : IServiceResult {
-    public static LicensePlateOcrResult Fail(params IEnumerable<string> errors) 
+internal sealed record LicensePlateOcrResult(bool IsSuccess, ErrorMessage[] Errors, LicensePlateInfo[] Infos) : IServiceResult {
+    public static LicensePlateOcrResult Fail(params IEnumerable<ErrorMessage> errors) 
         => new(false, errors.ToArray(), []);
     
     public static LicensePlateOcrResult Succeed(params IEnumerable<LicensePlateInfo> infos)
