@@ -16,10 +16,7 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="MySql.EntityFrameworkCore" Version="9.0.3" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Services\" />
+        <PackageReference Include="TencentCloudSDK.Ocr" Version="3.0.1252" />
     </ItemGroup>
 
 </Project>
