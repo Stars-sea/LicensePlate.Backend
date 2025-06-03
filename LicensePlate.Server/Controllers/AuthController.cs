@@ -13,7 +13,7 @@ public class AuthController(
 ) : ControllerBase {
 
     [HttpPost("register")]
-    public async Task<IActionResult> PostRegisterAsync([FromBody] RegisterRequest request) {
+    public async Task<ActionResult<RegisterResponse>> PostRegisterAsync([FromBody] RegisterRequest request) {
         (string email, string username, string password) = request;
         AuthenticationResult result = await authentication.RegisterAsync(email, username, password);
 
@@ -23,7 +23,7 @@ public class AuthController(
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> PostLoginAsync([FromBody] LoginRequest request) {
+    public async Task<ActionResult<LoginResponse>> PostLoginAsync([FromBody] LoginRequest request) {
         (string email, string password) = request;
         AuthenticationResult result = await authentication.LoginAsync(email, password);
 
