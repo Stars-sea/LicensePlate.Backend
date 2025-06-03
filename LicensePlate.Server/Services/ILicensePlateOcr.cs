@@ -2,6 +2,6 @@
 
 namespace LicensePlate.Server.Services;
 
-internal interface ILicensePlateOcr {
+public interface ILicensePlateOcr {
     Task<LicensePlateOcrResult> DetectLicensePlateAsync(string imageBase64);
 }

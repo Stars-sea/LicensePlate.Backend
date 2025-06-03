@@ -6,12 +6,13 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDatabase(builder.Configuration);
+
+builder.Services.AddControllers().ConfigureJson();
+builder.Services.AddIdentity();
+builder.Services.AddAuthentication(builder.Configuration);
+
 builder.Services.AddSettings(builder.Configuration);
 builder.Services.AddServices();
-
-builder.Services.AddControllers();
-builder.Services.AddIdentity();
-builder.Services.AddAuthorization();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
@@ -26,7 +27,7 @@ using (ApplicationDb database = scope.ServiceProvider.GetRequiredService<Applica
     database.Database.Migrate();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseAuthentication();
 

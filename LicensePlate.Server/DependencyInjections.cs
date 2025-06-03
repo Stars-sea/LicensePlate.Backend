@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Text.Json.Serialization;
 using LicensePlate.Server.Database;
 using LicensePlate.Server.Models;
 using LicensePlate.Server.Services;
@@ -23,7 +24,12 @@ internal static class DependencyInjections {
     public static IServiceCollection AddSettings(this IServiceCollection services, IConfiguration configuration)
         => services.Configure<TencentOcrSettings>(configuration.GetSection(TencentOcrSettings.Section))
                    .Configure<JwtSettings>(configuration.GetSection(JwtSettings.Section));
-    
+
+    public static IMvcBuilder ConfigureJson(this IMvcBuilder builder)
+        => builder.AddJsonOptions(options =>
+            options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        );
+
     public static IServiceCollection AddIdentity(this IServiceCollection services) {
         services.AddIdentity<UserProfile, IdentityRole>(options => {
                         options.User.RequireUniqueEmail         = true;
@@ -39,7 +45,7 @@ internal static class DependencyInjections {
 
     public static IServiceCollection AddAuthentication(this IServiceCollection services, IConfiguration configuration) {
         JwtSettings settings = configuration.GetSection(JwtSettings.Section).Get<JwtSettings>()!;
-        
+
         services.AddAuthentication(options => {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme    = JwtBearerDefaults.AuthenticationScheme;
@@ -57,6 +63,7 @@ internal static class DependencyInjections {
             }
         );
 
+        services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
         services.AddScoped<IAuthenticationService, AuthenticationService>();
 
         return services;

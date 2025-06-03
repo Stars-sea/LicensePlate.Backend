@@ -2,7 +2,7 @@
 
 namespace LicensePlate.Server.Services;
 
-internal interface IImageService {
+public interface IImageService {
     ImageServiceResult<string> BinaryImg2Base64(byte[] image);
     
     ImageServiceResult<byte[]> Base64ToBinaryImg(string base64);

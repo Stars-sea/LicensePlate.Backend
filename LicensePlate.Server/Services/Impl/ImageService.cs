@@ -10,8 +10,12 @@ internal class ImageService : IImageService {
             ? ImageServiceResult<string>.Succeed(Convert.ToBase64String(image))
             : ImageServiceResult<string>.Fail(("InvalidImgSize", "Invalid image size (should < 7 MB)"));
 
-    public ImageServiceResult<byte[]> Base64ToBinaryImg(string base64) 
-        => ImageServiceResult<byte[]>.Succeed(Convert.FromBase64String(base64));
+    public ImageServiceResult<byte[]> Base64ToBinaryImg(string base64) {
+        byte[] image = Convert.FromBase64String(base64);
+        return IsImageValid(image)
+            ? ImageServiceResult<byte[]>.Succeed(image)
+            : ImageServiceResult<byte[]>.Fail(("InvalidImgSize", "Invalid image size (should < 7 MB)"));
+    }
 
     public bool IsImageValid(byte[] image) => image.LongLength < MaxImgSize;
 }

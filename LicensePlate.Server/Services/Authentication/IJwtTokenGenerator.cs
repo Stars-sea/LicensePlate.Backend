@@ -2,6 +2,6 @@
 
 namespace LicensePlate.Server.Services.Authentication;
 
-internal interface IJwtTokenGenerator {
+public interface IJwtTokenGenerator {
     JwtTokenGeneratorResult Generate(string userId, string email, string username);
 }

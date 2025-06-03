@@ -1,7 +1,9 @@
-﻿namespace LicensePlate.Server.Services.Results;
+﻿using LicensePlate.Models;
 
-internal interface IServiceResult {
+namespace LicensePlate.Server.Services.Results;
+
+public interface IServiceResult {
     public bool IsSuccess { get; }
     
-    public ErrorMessage[] Errors { get; }
+    public Message[] Errors { get; }
 }

@@ -1,5 +1,5 @@
 ﻿namespace LicensePlate.Server.Services;
 
-internal interface IDateTimeProvider {
+public interface IDateTimeProvider {
     public DateTime UtcNow { get; }
 }

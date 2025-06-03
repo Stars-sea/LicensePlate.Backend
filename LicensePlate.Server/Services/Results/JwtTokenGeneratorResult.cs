@@ -1,6 +1,8 @@
-﻿namespace LicensePlate.Server.Services.Results;
+﻿using LicensePlate.Models;
 
-internal sealed record JwtTokenGeneratorResult(
+namespace LicensePlate.Server.Services.Results;
+
+public sealed record JwtTokenGeneratorResult(
     Guid Id,
     string Username,
     string Email,
@@ -9,5 +11,5 @@ internal sealed record JwtTokenGeneratorResult(
 ) : IServiceResult {
     public bool IsSuccess => true;
 
-    public ErrorMessage[] Errors => [];
+    public Message[] Errors => [];
 }

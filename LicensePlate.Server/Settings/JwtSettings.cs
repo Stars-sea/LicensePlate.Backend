@@ -1,6 +1,6 @@
 ﻿namespace LicensePlate.Server.Settings;
 
-internal sealed class JwtSettings {
+public sealed class JwtSettings {
     public const string Section = "JwtSettings";
 
     public string ValidIssuer { get; set; } = string.Empty;
