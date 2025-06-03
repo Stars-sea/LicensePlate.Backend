@@ -1,12 +1,12 @@
 ﻿using LicensePlate.Models;
-using TencentCloud.Ocr.V20181119.Models;
+using LicensePlate.Models.Detect;
 
 namespace LicensePlate.Server.Services.Results;
 
-public sealed record LicensePlateOcrResult(bool IsSuccess, Message[] Errors, LicensePlateInfo[] Infos) : IServiceResult {
+public sealed record LicensePlateOcrResult(bool IsSuccess, Message[] Errors, PlateInfo[] Infos) : IServiceResult {
     public static LicensePlateOcrResult Fail(params IEnumerable<Message> errors) 
         => new(false, errors.ToArray(), []);
     
-    public static LicensePlateOcrResult Succeed(params IEnumerable<LicensePlateInfo> infos)
+    public static LicensePlateOcrResult Succeed(params IEnumerable<PlateInfo> infos)
         => new(true, [], infos.ToArray());
 }

@@ -23,6 +23,7 @@ public class ProfileController(
     private string? UsernameFromToken =>
         User.Claims.FirstOrDefault(c => c.Type.Equals(JwtRegisteredClaimNames.Name))?.Value;
 
+    [NonAction]
     private ImageServiceResult<string> EncodeImage(byte[]? image)
         => image != null
             ? imageService.BinaryImg2Base64(image)
