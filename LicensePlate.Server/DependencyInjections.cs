@@ -21,6 +21,15 @@ internal static class DependencyInjections {
             }
         );
 
+    public static IServiceCollection AddCors(this IServiceCollection services, IConfiguration configuration) {
+        var allowedOrigins = configuration.GetSection("AllowedOrigins").Get<List<string>>();
+        if (allowedOrigins is null || allowedOrigins.Count == 0) return services;
+
+        return services.AddCors(
+            options => options.AddDefaultPolicy(policy => policy.WithOrigins(allowedOrigins.ToArray()))
+        );
+    }
+
     public static IServiceCollection AddSettings(this IServiceCollection services, IConfiguration configuration)
         => services.Configure<TencentOcrSettings>(configuration.GetSection(TencentOcrSettings.Section))
                    .Configure<JwtSettings>(configuration.GetSection(JwtSettings.Section));

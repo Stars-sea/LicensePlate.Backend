@@ -2,6 +2,6 @@
 
 public sealed record DetectResponse(
     bool IsSuccess,
-    Message[] Messages,
+    Message[]? Messages,
     PlateInfo[]? Infos
 );

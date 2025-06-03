@@ -6,6 +6,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDatabase(builder.Configuration);
+builder.Services.AddCors(builder.Configuration);
 
 builder.Services.AddControllers().ConfigureJson();
 builder.Services.AddIdentity();
@@ -27,7 +28,8 @@ using (ApplicationDb database = scope.ServiceProvider.GetRequiredService<Applica
     database.Database.Migrate();
 }
 
-// app.UseHttpsRedirection();
+app.UseHttpsRedirection();
+app.UseCors();
 
 app.UseAuthentication();
 
