@@ -29,6 +29,9 @@ using (ApplicationDb database = scope.ServiceProvider.GetRequiredService<Applica
 }
 
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
 app.UseCors();
 
 app.UseAuthentication();

@@ -25,8 +25,11 @@ internal static class DependencyInjections {
         var allowedOrigins = configuration.GetSection("AllowedOrigins").Get<List<string>>();
         if (allowedOrigins is null || allowedOrigins.Count == 0) return services;
 
-        return services.AddCors(
-            options => options.AddDefaultPolicy(policy => policy.WithOrigins(allowedOrigins.ToArray()))
+        return services.AddCors(options => options.AddDefaultPolicy(policy =>
+                policy.WithOrigins(allowedOrigins.ToArray())
+                      .AllowAnyMethod()
+                      .AllowAnyHeader()
+            )
         );
     }
 
